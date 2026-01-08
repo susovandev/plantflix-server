@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest';
 
 // Import the express application
 import initializeExpressApplication from '../../app.js';
+import { env } from '../../config/env.js';
 
 const app = initializeExpressApplication();
 
@@ -18,9 +19,9 @@ describe('Healthcheck Route', () => {
       status: 'success',
       statusCode: 200,
       data: {
-        serviceName: process.env.SERVICE_NAME,
-        environment: process.env.NODE_ENV,
-        version: process.env.API_VERSION,
+        serviceName: env.SERVICE_NAME,
+        environment: env.NODE_ENV,
+        version: env.API_VERSION,
         uptime: expect.any(Number),
         timestamp: expect.any(Number),
         processId: expect.any(Number),
