@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const envSchema = z.object({
+const BaseEnvSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().default(5555),
   HOST: z.string().default('127.0.0.1'),
@@ -12,4 +12,12 @@ const envSchema = z.object({
   CLIENT_PRODUCTION_URL: z.string().default('http://localhost:3001'),
 });
 
-export const env = envSchema.parse(process.env);
+const DatabaseEnvSchema = z.object({
+  DATABASE_URI: z.string(),
+  DATABASE_NAME: z.string(),
+});
+
+const EnvSchema =
+  process.env.NODE_ENV === 'test' ? BaseEnvSchema : BaseEnvSchema.merge(DatabaseEnvSchema);
+
+export const env = EnvSchema.passthrough().parse(process.env);

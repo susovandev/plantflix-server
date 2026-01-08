@@ -1,16 +1,11 @@
 // Core Modules
 import { beforeAll, afterAll, afterEach } from 'vitest';
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
-let mongo: MongoMemoryServer;
+import { connectDB, disconnectDB } from '../../src/config/database.js';
 
 beforeAll(async () => {
-  mongo = await MongoMemoryServer.create();
-
-  const uri = mongo.getUri();
-
-  await mongoose.connect(uri);
+  await connectDB();
 });
 
 afterEach(async () => {
@@ -22,7 +17,5 @@ afterEach(async () => {
 });
 
 afterAll(async () => {
-  await mongoose.connection.dropDatabase();
-  await mongoose.connection.close();
-  await mongo.stop();
+  await disconnectDB();
 });
