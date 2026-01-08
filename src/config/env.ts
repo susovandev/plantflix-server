@@ -10,11 +10,11 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(5555),
   HOST: z.string().default('127.0.0.1'),
 
-  SERVICE_NAME: z.string(),
-  API_VERSION: z.string(),
+  SERVICE_NAME: z.string().default('plantflix-server'),
+  API_VERSION: z.string().default('1.0.0'),
 
-  CLIENT_DEVELOPMENT_URL: z.string(),
-  CLIENT_PRODUCTION_URL: z.string(),
+  CLIENT_DEVELOPMENT_URL: z.string().default('http://localhost:3000'),
+  CLIENT_PRODUCTION_URL: z.string().default('http://localhost:3001'),
 });
 
 export const env = envSchema.parse(process.env);
