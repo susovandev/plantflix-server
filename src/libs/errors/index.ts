@@ -7,6 +7,7 @@ import { ConflictError } from './conflictError.js';
 import { TooManyRequestsError } from './tooManyRequestsError.js';
 import { InternalServerError } from './InternalServerError.js';
 import { ServiceUnavailableError } from './serviceUnavailableError.js';
+import { normalizeError } from './normalizeError.js';
 
 export {
   HttpError,
@@ -18,4 +19,5 @@ export {
   TooManyRequestsError,
   InternalServerError,
   ServiceUnavailableError,
+  normalizeError,
 };

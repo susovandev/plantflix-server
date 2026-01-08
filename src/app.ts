@@ -14,6 +14,10 @@ import configRoutes from '@routes/index.js';
 // Types
 import type { Application } from 'express';
 
+// Middlewares
+import { notFoundHandler } from '@middlewares/notFound.middleware.js';
+import { errorHandler } from '@middlewares/error.middleware.js';
+
 /**
  * Initializes an express application
  * @returns An express application
@@ -33,6 +37,12 @@ export default function initializeExpressApplication(): Application {
 
   // import routes
   configRoutes(app);
+
+  // Not found middleware
+  app.use(notFoundHandler);
+
+  // Error middleware
+  app.use(errorHandler);
 
   return app;
 }

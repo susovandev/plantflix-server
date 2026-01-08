@@ -1,3 +1,6 @@
+// Load env
+import '@config/loadEnv.js';
+
 // Core Modules
 import initializeExpressApplication from '@app.js';
 
@@ -14,13 +17,12 @@ import type { Application } from 'express';
 export default function main() {
   const app: Application = initializeExpressApplication();
 
-  const port = env.PORT;
-  const node_env = env.NODE_ENV;
-  const host = env.HOST;
+  const { HOST, PORT, SERVICE_NAME, NODE_ENV } = env;
 
-  app.listen(port, () => {
-    Logger.info(`Server is running in ${node_env} mode on http://${host}:${port}`);
-    Logger.info(`Healthcheck: http://${host}:${port}/healthcheck`);
+  app.listen(PORT, () => {
+    Logger.info(`${SERVICE_NAME} is running on http://${HOST}:${PORT}`);
+    Logger.info(`Environment: ${NODE_ENV}`);
+    Logger.info(`Health check route: http://${HOST}:${PORT}/healthcheck`);
   });
 }
 
