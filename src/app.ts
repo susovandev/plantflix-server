@@ -1,27 +1,17 @@
-/**
- * @CoreModule
- */
+// Core Modules
 import express from 'express';
 
-/**
- * @Constants
- */
+// Constants
 import { REQUEST_BODY_LIMIT } from '@constants/index.js';
 
-/**
- * @ConfigModule
- */
+// Config
 import { corsConfig } from '@config/cors.js';
 import morganMiddleware from '@config/morgan.js';
 
-/**
- * @Routes
- */
+// Routes
 import configRoutes from '@routes/index.js';
 
-/**
- * @Types
- */
+// Types
 import type { Application } from 'express';
 
 /**

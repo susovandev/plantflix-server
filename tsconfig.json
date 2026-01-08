@@ -35,6 +35,7 @@
     // Base URL & Aliases
     "baseUrl": "./src",
     "paths": {
+      "@constants/*": ["constants/*"],
       "@config/*": ["config/*"],
       "@modules/*": ["modules/*"],
       "@middlewares/*": ["middlewares/*"],

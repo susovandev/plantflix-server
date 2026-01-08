@@ -1,7 +1,11 @@
-/**
- * @CoreModule
- */
+// Core Modules
 import winston from 'winston';
+import { env } from './env.js';
+
+const isProd = process.env.NODE_ENV === 'production';
+const isTest = process.env.NODE_ENV === 'test';
+
+const level = isTest ? 'error' : isProd ? 'warn' : 'info';
 
 const levels = {
   error: 0,
@@ -21,11 +25,6 @@ const colors = {
 
 winston.addColors(colors);
 
-const level = () => {
-  const environment = process.env.NODE_ENV || 'development';
-  return environment === 'development' ? 'debug' : 'warn';
-};
-
 const format = winston.format.combine(
   winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
   winston.format.colorize({ all: true }),
@@ -39,17 +38,17 @@ const format = winston.format.combine(
 );
 
 const transports = [
-  new winston.transports.Console({ level: 'debug' }),
+  new winston.transports.Console({ level, silent: isTest }),
   new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
   new winston.transports.File({ filename: 'logs/all.log' }),
 ];
 
 const Logger = winston.createLogger({
-  level: level(),
+  level: level,
   levels,
   format,
   defaultMeta: {
-    service: process.env.SERVICE_NAME,
+    service: env.SERVICE_NAME,
   },
   transports,
 });

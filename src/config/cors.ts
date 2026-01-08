@@ -1,12 +1,8 @@
-/**
- * @CoreModule
- */
+// Core Modules
 import cors, { type CorsOptions } from 'cors';
 
-/**
- * @ConfigModule
- */
-import { env } from '@config/index.js';
+// Config
+import { env } from './env.js';
 
 const corsOptions: CorsOptions = {
   origin: (origin, cb) => {

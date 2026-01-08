@@ -1,17 +1,11 @@
-/**
- * @CustomModule
- */
+// Core Modules
 import initializeExpressApplication from '@app.js';
 
-/**
- * @ConfigModule
- */
-import { env } from '@config/index.js';
+// Config
+import { env } from '@config/env.js';
 import Logger from '@config/logger.js';
 
-/**
- * @Types
- */
+// Types
 import type { Application } from 'express';
 
 /**

@@ -1,12 +1,8 @@
-/**
- * @CoreModule
- */
+// Core Modules
 import morgan, { type StreamOptions } from 'morgan';
 
-/**
- * @ConfigModule
- */
-import { env } from './index.js';
+// Config
+import { env } from './env.js';
 import Logger from './logger.js';
 
 const stream: StreamOptions = {
@@ -14,7 +10,7 @@ const stream: StreamOptions = {
 };
 
 const skip = () => {
-  const environment = env.NODE_ENV;
+  const environment = env.NODE_ENV || 'development';
   return environment !== 'development';
 };
 
