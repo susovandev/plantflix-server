@@ -6,7 +6,7 @@ import { NotFoundError } from './notFoundError.js';
 import { ConflictError } from './conflictError.js';
 import { TooManyRequestsError } from './tooManyRequestsError.js';
 import { InternalServerError } from './InternalServerError.js';
-import { ServiceUnavailableError } from './ServiceUnavailableError.js';
+import { ServiceUnavailableError } from './serviceUnavailableError.js';
 
 export {
   HttpError,
